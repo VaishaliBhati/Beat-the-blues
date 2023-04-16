@@ -1,0 +1,57 @@
+body {
+    background-color: rgba(1, 11, 47, 0.59);
+    /*background-image: url('/static/stars.webp');*/
+}
+
+.cn {
+
+    width: 100%;
+    height: 100%;
+}
+
+.inner {
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+
+    width: 50%;
+    height: 50%;
+}
+
+p {
+    color: #279871;
+}
+
+label {
+    float: left;
+    color: black;
+    margin-left: 20px;
+    ;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-top: 50px;
+    font-family: Gubbi, "Samyak Gujarati", math
+}
+
+#send-button {
+    height: 40px;
+    width: 23%;
+    float: right;
+    color: rgb(255, 255, 255);
+    border-radius: 30px;
+    margin-top: 12px;
+    /*background-color:#ff0000;"*/
+}
+
+.message-area {
+    overflow-x: auto;
+    width: 100%;
+    height: 520px;
+    background-color: #ffffff;
+    float: left;
+    border-radius: 10px;
+}

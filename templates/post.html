@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span class="v-blog-label">{{ post['label'] }}</span>
+<h2 class="v-blog-h2">{% block title %} {{ post['title'] }} {% endblock %}</h2>
+<span class="badge badge-primary v-badge">{{ post['author'] }}</span>
+<span class="badge badge-primary v-badge">{{ post['created'] }}</span>
+<h4 class="v-h4-content">{{ post['content'] }}</h4>
+{% endblock %}

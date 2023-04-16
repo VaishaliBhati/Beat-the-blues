@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!--<h1 class="v-h1">{% block title %} Top Posts {% endblock %}</h1>-->
+<hr>
+
+{% for post in posts %}
+<a href="{{ url_for('post', post_id=post['id']) }}">
+    <h2 class="v-blogtitle">{{ post['title'] }}</h2>
+</a>
+<span class="badge badge-primary v-badge">{{ post['label'] }}</span>
+<span class=" badge badge-primary v-badge">{{ post['author'] }}</span>
+<span class="badge badge-primary v-badge">{{ post['created'] }}</span>
+<a href="{{ url_for('edit', id=post['id']) }}">
+    <span class="badge badge-warning v-badge">Edit</span>
+</a>
+
+
+{% endfor %}
+
+<!-- Fetching the feeling from db and showing on front end --
+{% for feeling in feelings %}
+<h2>{{ feeling['f_name'] }}</h2>
+<br>
+{% endfor %}
+<!-- // Fetching the feeling from db and showing on front end -->
+
+
+{% endblock %}

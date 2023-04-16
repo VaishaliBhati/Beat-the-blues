@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Theme Made By www.w3schools.com -->
+    <title>Beat The Blues - When you have no one to talk</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- chatbot -->
+    <!-- stylesheets are conveniently separated into components -->
+    <link rel="stylesheet" media="all" href="/static/setup.css">
+    <link rel="stylesheet" media="all" href="/static/says.css">
+    <link rel="stylesheet" media="all" href="/static/reply.css">
+    <link rel="stylesheet" media="all" href="/static/typing.css">
+    <link rel="stylesheet" media="all" href="/static/input.css">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />-->
+    <link rel="stylesheet" href="/static/index.css">
+    <!-- // chatbot -->
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index')}}"><img
+                        src="https://vcreateweb.com.au/wp-content/uploads/2023/01/BTB-light.png" width="220"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#v-blog">ALL POSTS</a></li>
+                    <li><a href="#about">ABOUT</a></li>
+                    <li><a href="{{url_for('create')}}">NEW POST</a></li>
+                    <li><a href="#contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron text-center">
+
+        <div class="row v-homebannerleft">
+            <div class="col-sm-5" style="margin-left:35px;">
+                <h2>Welcome to</h2>
+                <h1 style="margin-top:-5px;font-weight:900;">BEAT THE BLUES</h1><br>
+                <p id="v-blog">If you’re of age 10 -17 and going through a tough time, be in school or at home, you’re
+                    not alone. Beet the Blues will guide you to express your feelings and get help.</p>
+                <p id="v-blog" style="font-weight: 900;color:#0d186a">If you’re ready, let’s work out what’s worrying
+                    you at the moment 😊 Please let us know
+                </p>
+                <button class="btn btn-default v-blue-btn" type="submit"><a href="#v-feelings" style="color:#fff;">How
+                        are you feeling
+                        today?</a></button>
+            </div>
+            <div class="col-sm-6" style="margin-top:-75px;">
+                <img src="https://vcreateweb.com.au/wp-content/uploads/2023/01/home-banner.png" width="600">
+            </div>
+        </div>
+    </div>
+
+    <!---- chatbot code   -->
+    <div id="main" class="cn">
+        <div class="inner" id="in">
+            <div>
+                <div class="message-area" id="chat"></div>
+            </div>
+        </div>
+    </div>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div id="controls">
+        <img style="padding: 5px; margin-top: 23%;margin-left:10px;float: left;" src="static/mic.png"
+            class="record rounded-circle btn-success" />
+        <img style="padding: 5px; margin-top: 23%; margin-left: 10px;" src="static/stop.png"
+            class="stop rounded-circle btn-danger" />
+
+    </div>
+    <script type="module" src="/static/index.js"></script>
+    <script type="module" src="/static/recorder.js"></script>
+    <script src="/static/ai.js"></script>
+    <script src="/static/Bubbles.js"></script>
+    <script type="text/javascript">
+        var convo = {
+            ice: {
+                says: ["Welcome to Beat the Blues",
+                    "If you’re of age 10 -17 and going through a tough time, be in school or at home, you’re not alone. Beat the Blues will guide you to express your feelings and get help.",
+                    "If you’re ready, let’s work out what’s worrying you at the moment 😊 Please let us know ‘How are you feeling today?"],
+                reply: [
+                    {
+                        question: "I’m not sure",
+                        answer: "not_sure"
+                    },
+                    {
+                        question: "Sad",
+                        answer: "sad"
+                    },
+                    {
+                        question: "Angry",
+                        answer: "help"
+                    }
+                ]
+            },
+            "not_sure": {
+                says: ["That’s okay! Remember, I am always here if you wish to talk/write about it.”"],
+                reply: [
+                    {
+                        question: "Start Over",
+                        answer: "ice"
+                    }
+                ]
+            },
+            "sad": {
+                says: ["Is it related to home or school?"],
+                reply: [
+                    {
+                        question: "If home, want to talk about it?",
+                        answer: "emoji"
+                    },
+                    {
+                        question: "If school, want to talk about it?",
+                        answer: "emoji"
+                    }
+                ]
+            },
+            "emoji": {
+                says: ["To help us find the best support options, let us know how much this affects you."],
+                reply: [
+                    {
+                        question: "😐",
+                        answer: "help"
+                    },
+                    {
+                        question: "😢",
+                        answer: "help"
+                    },
+                    {
+                        question: "😔",
+                        answer: "help"
+                    },
+                ]
+            },
+            "help": {
+                says: ["Here are the support options in VIC that we recommend you try first."],
+                reply: [
+                    {
+                        question: "Healthdirect 1800 022 222 (Australia-wide, general help for mental health)",
+                        answer: "hdirect"
+                    },
+                    {
+                        question: "Lifeline 131 114 (Australia-wide)(suicide help)",
+                        answer: "ice"
+                    },
+                    {
+                        question: "Kids Helpline 1800 55 1800 (Australia-wide)",
+                        answer: "ice"
+                    },
+                    {
+                        question: "ruok",
+                        answer: "ruok"
+                    },
+                    {
+                        question: "Head to Health 1800 595 212",
+                        answer: "ice"
+                    }
+                ]
+            }
+        }
+
+        var chatWindow = new Bubbles(document.getElementById("chat"), "chatWindow", {
+            inputCallbackFn: function (o) {
+                // add error conversation block & recall it if no answer matched
+                var miss = async function () {
+                    if (o.input == "restart")
+                        chatWindow.talk(convo)
+                    else {
+                        // use chatbot
+                        let response = await chatbot(o.input);
+                        let reply = response["answers"][0]["answer"];
+                        let blob = await text_to_speech(reply);
+                        const audioUrl = URL.createObjectURL(blob);
+                        new Audio(audioUrl).play();
+                        console.log(reply);
+                        addBubble(`<span>${reply}</span>`, function () { }, undefined, true);
+                    }
+                }
+
+                // do this if answer found
+                var match = async function (key) {
+                    setTimeout(function () {
+                        chatWindow.talk(convo, key) // restart current convo from point found in the answer
+                    }, 600)
+                }
+
+                // sanitize text for search function
+                var strip = function (text) {
+                    return text.toLowerCase().replace(/[\s.,\/#!$%\^&\*;:{}=\-_'"`~()]/g, "")
+                }
+
+                // search function
+                var found = false
+                o.convo[o.standingAnswer].reply.forEach(function (e, i) {
+                    strip(e.question).includes(strip(o.input)) && o.input.length > 0
+                        ? (found = e.answer)
+                        : found ? null : (found = false)
+                })
+                found ? match(found) : miss()
+            }
+        }) // done setting up chat-bubble
+
+        hdirect = function () {
+            window.open('https://www.healthdirect.gov.au')
+            chatWindow.talk(convo, "ice")
+        }
+        ruok = function () {
+            window.open('https://www.ruok.org.au/findhelp?')
+            chatWindow.talk(convo, "ice")
+        }
+
+        // pass JSON to your function and you're done!
+        chatWindow.talk(convo)
+    </script>
+    <script src="/static/mybubbles.js"></script>
+
+
+    <!--  // Chatbot code -->
+
+
+
+    <!-- Container (Feelings Section) --
+    <div id="v-feelings" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <img src="https://vcreateweb.com.au/wp-content/uploads/2023/01/sad.png" width="200">
+            </div>
+            <div class="col-sm-2">
+                <img src="https://vcreateweb.com.au/wp-content/uploads/2023/01/worried.png" width="200">
+            </div>
+            <div class="col-sm-2">
+                <img src="https://vcreateweb.com.au/wp-content/uploads/2023/01/angry.png" width="200">
+            </div>
+            <div class="col-sm-2">
+                <img src="https://vcreateweb.com.au/wp-content/uploads/2023/01/angry.png" width="200">
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br><br><br>
+    </div>
+    <!-- // Container (Feelings Section) -->
+
+
+    <!-- Container (About Section) -->
+    <div id="about" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                {% for message in get_flashed_messages() %}
+                <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+                {% block content %} {% endblock %}
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+
+    <!--
+    <div class="container-fluid v-bg-blue">
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-bold logo v-glyph"></span>
+            </div>
+            <div class="col-sm-8">
+                <h2>Welcome!</h2><br>
+                <h4 class="v-h4"><strong>Hi!</strong>Welcome to my very first Web Page created using
+                    Python and help from wonderful digital ocean :)
+
+                    This is my brand new blog to get insights of current trends in technology sector, travel, food and
+                    much more.I'm very excited to have you on board. Feel free to subscribe to my newsletter!
+
+                    Any questions? Feels free to get in touch using the contact form below and I'll get back to you as
+                    sson as I can!
+
+                </h4><br>
+            </div>
+        </div>
+    </div>
+    -->
+
+    <!-- Container (Contact Section) -->
+    <div id="contact" class="container-fluid v-padding bg-grey">
+        <div class="row">
+            <div class="col-sm-5">
+                <p>Get in touch and I'll get back to you as soon as I can!</p>
+                <p><span class="glyphicon glyphicon-map-marker"></span> Melbourne, VIC</p>
+                <p><span class="glyphicon glyphicon-phone"></span> +61 4000000000</p>
+                <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group">
+                        <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+                    </div>
+                </div>
+                <textarea class="form-control" id="comments" name="comments" placeholder="Comment"
+                    rows="5"></textarea><br>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button class="btn btn-default pull-right" type="submit">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="container-fluid text-center v-bg-blue">
+        <a href="#myPage" title="To Top">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a>
+        <p>Python Web Page Made with the help of Bootsrap By <a href="#">Vaishali Bhati - AZ06</a></p>
+    </footer>
+
+    <script>
+        $(document).ready(function () {
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+
+            $(window).scroll(function () {
+                $(".slideanim").each(function () {
+                    var pos = $(this).offset().top;
+
+                    var winTop = $(window).scrollTop();
+                    if (pos < winTop + 600) {
+                        $(this).addClass("slide");
+                    }
+                });
+            });
+        })
+    </script>
+
+</body>
+
+</html>
